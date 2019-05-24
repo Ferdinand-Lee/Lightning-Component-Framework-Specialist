@@ -1,0 +1,9 @@
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="value" type="Object"/>
+    <aura:attribute name="oldValue" type="Object"/>
+    
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="oldData" type="Object"/>
+    
+    <aura:attribute name="item" type="Object"/>
+</aura:event>

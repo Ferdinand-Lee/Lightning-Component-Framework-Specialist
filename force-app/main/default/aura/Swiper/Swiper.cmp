@@ -1,0 +1,9 @@
+<aura:component >
+    <ltng:require styles="{!$Resource.Swiper4 + '/swiper.min.css'}" />
+    <ltng:require scripts="{!$Resource.Swiper4 + '/swiper.min.js'}" afterScriptsLoaded="{!c.afterScriptsLoaded}" />
+    <div class="swiper-container" aura:id="swiper">
+        <div class="swiper-wrapper">
+            {!v.body}
+        </div>
+    </div>
+</aura:component>

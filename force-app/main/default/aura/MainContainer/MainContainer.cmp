@@ -1,0 +1,125 @@
+<aura:component implements="flexipage:availableForAllPageTypes" extends="c.main">
+	<aura:set attribute="content" value="world"></aura:set>
+    <!-- handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <!-- attributes -->
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="selectedRows" type="Object"/>
+    <aura:attribute name="filter" type="String"/>
+    <aura:attribute name="hideCheckboxColumn" type="Boolean"/>
+    
+    <aura:attribute name="records" type="List"/>
+    <aura:handler name="onSaveSuccess" event="force:recordSaveSuccess" action="{!c.handleSaveSuccess}"/>    
+        
+    <aura:attribute name="transitionShow" type="Boolean" default="false"/>
+    
+    <lightning:card title="Demos">
+        <c:Accordion activeSectionName="F">
+            <c:AccordionSection name="A" label="Section A">
+                <aura:set attribute="actions">
+                    <lightning:buttonMenu aura:id="menu" alternativeText="Show menu" iconSize="x-small" menuAlignment="right">
+                        <lightning:menuItem value="New" label="Menu Item One" />
+                        <lightning:menuItem value="Edit" label="Menu Item Two" />
+                    </lightning:buttonMenu>
+                </aura:set>
+                
+                <lightning:datatable aura:id="dt" 
+                                     columns="{! v.columns }"
+                                     data="{! v.data }"
+                                     keyField="id"
+                                     onsave="{! c.handleSave }"
+                                     onrowselection="{! c.onrowselection}"
+                                     oncellchange="{! c.oncellchange}"
+                                     oncancel="{! c.oncancel}"
+                                     onrowaction="{! c.handleRowAction }"/>
+                
+            </c:AccordionSection>
+            <c:AccordionSection name="B" label="Section B">                
+                <br/>
+                <lightning:button label="set filter" onclick="{!c.onSetFilter}"/>
+                <lightning:button label="toggle hideCheckboxColumn" onclick="{!c.toggleHideCheckboxColumn}"/>
+                <lightning:button label="get Selected Rows" onclick="{!c.getSelectedRows}"/>
+                <c:datatable aura:id="mydt"
+                             columns="{! v.columns }"
+                             keyField="id"
+                             selectedRows="{!v.selectedRows}"
+                             hideCheckboxColumn="{!v.hideCheckboxColumn}"
+                             filter="{!v.filter}"
+                             data="{! v.data }"
+                             onrowaction="{! c.handleRowAction }"
+                             onrowselection="{! c.onrowselection}"/>
+            </c:AccordionSection>
+            <c:AccordionSection name="C" label="Section C">
+                <c:PageableTest/>
+            </c:AccordionSection>
+            <c:AccordionSection name="D" label="Section D">                
+                <aura:iteration items="{!v.records}" var="record">
+                	<lightning:input type="checkbox" checked="{!record.checked}" label="{!record.name}"></lightning:input>
+                </aura:iteration>
+                <lightning:button label="checkValue" onclick="{!c.checkValue}"></lightning:button>
+            </c:AccordionSection>
+            <c:AccordionSection name="E" label="Section E">
+            	<c:P></c:P>
+            </c:AccordionSection>
+            <c:AccordionSection name="F" label="Transition">
+                <lightning:button label="toggle show" onclick="{!c.toggleTransitionShow}"></lightning:button>
+                <c:TransitionShow isTrue="{!v.transitionShow}" name="myfade">
+                    hello
+                </c:TransitionShow>
+            </c:AccordionSection>
+        </c:Accordion>
+    </lightning:card>
+    <aura:attribute name="tabs" type="List"/>
+    <aura:attribute name="items" type="Object"/>
+    <aura:attribute name="selectItems" type="Object" default="22"/>
+    <aura:attribute name="dynamicInputData" type="Map" default="{}"/>
+    <aura:attribute name="dynamicInputConfig" type="List"/>
+    <aura:handler name="dynamicInputChangeEvt" event="c:DynamicInputChangeEvt" action="{!c.onDynamicInputChange}"/>
+	<lightning:card title="Dynamic Tabs">
+        <aura:set attribute="actions">
+            <lightning:button label="NewTab" onclick="{!c.newTab}"/>
+        </aura:set>
+    	<lightning:tabset variant="scoped" aura:id="tabs">
+            <lightning:tab label="TreeSelection" id="ts">
+                <div class="slds-tree_container" role="application">                    
+                	<c:TreeSelection aura:id="treeSelect" 
+                                     items="{!v.items}" 
+                                     name="my" 
+                                     value="{!v.selectItems}" 
+                                     keyField="name"
+                                     allowSelectAll="true"
+                                     model="multiple"
+                                     />
+                </div>
+                <lightning:button label="printItems" onclick="{!c.printItems}"/>
+            </lightning:tab>
+            <lightning:tab label="DynamicInput" id="di"> 
+                <aura:iteration items="{!v.dynamicInputConfig}" var="item">
+                    <c:DynamicInput data="{!v.dynamicInputData}" path="{!item.name}" is="{!item.component}" params="{!item}"/>
+                </aura:iteration>
+                <lightning:button label="setDynamicInput" onclick="{!c.setDynamicInput}"/>
+                <lightning:button label="printDynamicInput" onclick="{!c.printDynamicInput}"/>
+            </lightning:tab>
+            <lightning:tab label="xlsx" id="xlsx"> 
+                <c:xlsx/>
+            </lightning:tab>
+            <lightning:tab label="providerInput" id="providerInput"> 
+                <c:providerInput object="{!v.dynamicInputData}" path="name"/>
+                <c:put object="{!v.dynamicInputData}" path="name">
+                    <lightning:input/>
+                </c:put>
+            </lightning:tab>
+            <lightning:tab label="list" id="list">
+            	<c:list items="{!v.tabs}" var="tab">
+                	{!tab.name}
+                </c:list>
+            </lightning:tab>
+            <aura:iteration items="{!v.tabs}" var="tab" indexVar="index">
+                <lightning:tab label="{!tab.name}" id="{!tab.id}">
+                    {!index + 1}
+                </lightning:tab>
+            </aura:iteration>
+    	</lightning:tabset>
+    </lightning:card>
+</aura:component>

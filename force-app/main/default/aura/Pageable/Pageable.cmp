@@ -1,0 +1,51 @@
+<aura:component extensible="true" abstract="true">
+    <aura:attribute name="records" type="List" default="[]"/>
+    <aura:attribute name="pageRecords" type="List"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+    <aura:attribute name="totalPages" type="Integer"/>    
+    <aura:attribute name="currentPage" type="Integer" default="1"/>
+        
+    <aura:attribute name="hasNext" type="Boolean"/>
+    <aura:attribute name="hasPre" type="Boolean"/>
+    <aura:attribute name="isFirstEnabled" type="Boolean"/>
+    <aura:attribute name="isLastEnabled" type="Boolean"/>
+    
+    <aura:attribute name="pagenationBar" type="Aura.Component[]"/>
+    
+    <aura:handler name="change" value="{!v.currentPage}" action="{!c.onPageChange}"/>
+   	<aura:handler name="change" value="{!v.records}" action="{!c.onRecordsChange}"/>        
+    <aura:method name="setRecords">
+        <aura:attribute name="records" type="List"/>
+    </aura:method>
+    
+    {!v.body}
+    
+    <aura:if isTrue="{!empty(v.pagenationBar)}">
+    	<lightning:buttonGroup>
+            <lightning:button label="First" disabled="{!not(v.isFirstEnabled)}" onclick="{!c.firstPage}"/>
+            <lightning:button label="Pre" disabled="{!not(v.hasPre)}" onclick="{!c.prePage}"/>
+            <lightning:button label="..." 
+                              onclick="{!c.onPagenationClick}"
+                              class="{!if(greaterthan(v.currentPage, 3), '','slds-hide')}"
+                              value="{!(v.currentPage - 3)}"/>
+            <aura:iteration items="[-2, -1, 0, 1, 2]" var="i">
+                <lightning:button label="{!(i + v.currentPage)}" 
+                                  variant="{!if(equals(i, 0), 'brand', 'Neutral')}"
+                                  class="{!if(or(lessthan(i + v.currentPage, 1), greaterthan(i + v.currentPage, v.totalPages)), 'slds-hide','')}"
+                                  onclick="{!c.onPagenationClick}"
+                                  value="{!(i + v.currentPage)}"/>
+            </aura:iteration>
+            <lightning:button label="..." 
+                              onclick="{!c.onPagenationClick}"
+                              class="{!if(lessthan(v.currentPage + 2, v.totalPages), '','slds-hide')}"
+                              value="{!(v.currentPage + 3)}"/>
+            <lightning:button label="Next" disabled="{!not(v.hasNext)}" onclick="{!c.nextPage}"/>
+            <lightning:button label="Last" disabled="{!not(v.isLastEnabled)}" onclick="{!c.lastPage}"/>
+        </lightning:buttonGroup>
+        <aura:set attribute="else">
+        	{!v.pagenationBar}
+        </aura:set>
+    </aura:if>
+    
+    
+</aura:component>

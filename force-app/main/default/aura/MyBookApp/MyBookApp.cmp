@@ -1,0 +1,27 @@
+<aura:component extends="c:MyAppContainer" implements="flexipage:availableForAllPageTypes">
+    <aura:set attribute="state" value="{counter: 0}"/>
+    <aura:set attribute="tabBar" 
+              value="{  color: 'rgb(0, 112, 210)',
+                     	selectedColor: '',
+                     	backgroundColor: '',
+                     	borderStyle: '',
+                     	position: 'bottom',
+                     	list:[{
+                     		pageName:'c:MyHomePage',
+                     		text:'Home',
+                     		iconName: 'utility:home'
+                     	},{
+                     		pageName:'c:MyHistoryPage',
+                     		text:'History',
+                     		iconName: 'utility:clock'
+                     	},{
+                     		pageName:'c:MyNotePage',
+                     		text:'Notes',
+                     		iconName: 'utility:note'
+                     	},{
+                     		pageName:'c:MyAboutPage',
+                     		text:'User',
+                     		iconName: 'utility:user'
+                     	}]
+                     }"/>
+</aura:component>

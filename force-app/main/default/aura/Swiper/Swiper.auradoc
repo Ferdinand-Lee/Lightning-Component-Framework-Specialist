@@ -1,0 +1,6 @@
+<aura:documentation>
+	<aura:description>Documentation</aura:description>
+	<aura:example name="Simple" ref="c:ExampleSwiper" label="Simple">
+		Simple Example
+	</aura:example>
+</aura:documentation>

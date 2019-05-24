@@ -1,0 +1,9 @@
+<aura:component extends="c:MyPageComponent">
+    <aura:set attribute="showTabBar" value="false"/>
+    <aura:attribute name="errorMessage" type="String"/>
+    <aura:attribute name="error" type="Map"/>
+    <aura:if isTrue="{!not(empty(v.errorMessage))}">
+    	{!v.errorMessage}
+    </aura:if>
+    <lightning:button label="goback" onclick="{!c.goback}"/>
+</aura:component>

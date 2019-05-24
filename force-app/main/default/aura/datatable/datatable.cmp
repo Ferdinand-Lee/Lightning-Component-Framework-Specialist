@@ -1,0 +1,96 @@
+<aura:component>
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="keyField" type="String" required="true"/>
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="hideCheckboxColumn" type="boolean" default="false"/>
+    <aura:attribute name="selectedRows" type="List" default="[]"/>
+    <aura:attribute name="filter" type="String"/>
+    <aura:attribute name="filteredData" type="List" access="PRIVATE"/>
+    <aura:attribute name="maxRowSelection" type="Integer"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="change" value="{!v.data}" action="{!c.onDataChange}"/>
+    <aura:handler name="change" value="{!v.filter}" action="{!c.onFilterChange}"/>
+    <aura:handler name="change" value="{!v.hideCheckboxColumn}" action="{!c.onHideCheckboxColumnChange}"/>
+    
+    <aura:attribute name="mouseStart" type="string" />
+    <aura:attribute name="oldWidth" type="string" />
+    
+    
+    <aura:registerEvent name="onrowselection" type="c:datatableEvent"/>
+    <aura:registerEvent name="onrowaction" type="c:datatableEvent"/>
+    
+    <aura:method name="getSelectedRows"></aura:method>
+    <table class="slds-table slds-table_bordered slds-table_resizable-cols slds-table_fixed-layout" role="grid">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <aura:if isTrue="{!not(v.hideCheckboxColumn)}">
+                <th class="slds-text-align_right" scope="col" style="width: 3.25rem;">
+                    <span id="check-group-header" class="slds-assistive-text">Choose a row</span>
+                    <div class="slds-th__action slds-th__action_form">
+                        <lightning:input type="checkbox" onchange="{!c.onSelectAll}"/>
+                    </div>
+                </th>
+                </aura:if>
+                <aura:iteration items="{!v.columns}" var="column">
+                <aura:if isTrue="{!not(equals(column.type, 'action'))}">
+                    <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Name" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">                        
+                            <span class="slds-truncate" title="{!column.label}">{!column.label}</span>
+                        </a>
+                        <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true">Sorted none</span>
+                        <div class="slds-resizable">
+                            <input type="range" min="20" max="1000" aria-label="Name column width" class="slds-resizable__input slds-assistive-text"
+                                id="cell-resize-handle-8" tabindex="-1" />
+                            <span class="slds-resizable__handle" onmousedown="{!c.onmousedown}" ondrag="{!c.ondrag}" draggable="true">
+                                <span class="slds-resizable__divider"></span>
+                            </span>
+                        </div>
+                    </th>
+                </aura:if>
+                <aura:if isTrue="{!equals(column.type, 'action')}">
+                    <th scope="col">
+                        <div class="slds-th__action slds-align-content-center">
+                            {!column.label}
+                        </div>
+                    </th>    
+                </aura:if>
+                </aura:iteration>                
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.filteredData}" var="row">
+            <tr class="slds-hint-parent">
+                <aura:if isTrue="{!not(v.hideCheckboxColumn)}">
+                <td class="slds-text-align_right" role="gridcell">
+                    <lightning:input aura:id="checkbox" 
+                                     disabled="{!and(not(row.$checked),greaterthanorequal(v.selectedRows.length, v.maxRowSelection))}"
+                                     type="checkbox" 
+                                     checked="{!row.$checked}"
+                                     value="{!row.$source}" 
+                                     onchange="{!c.onSelect}"/>
+                </td>
+                </aura:if>
+                <aura:iteration items="{!v.columns}" var="column">
+                <aura:if isTrue="{!not(equals(column.type, 'action'))}">
+                    <c:datatablecell row="{!row.$source}" column="{!column}"/>
+                </aura:if>
+                <aura:if isTrue="{!equals(column.type, 'action')}">
+                	<td role="gridcell">
+                        <div class="slds-truncate" title="action" style="text-align:center;">
+                            <aura:iteration items="{!column.typeAttributes.rowActions}" var="action">
+                                <lightning:button class="slds-p-horizontal_xx-small link" 
+                                                  label="{!action.label}" 
+                                                  value="{!row.$source}"
+                                                  name="{!action.name}"
+                                                  onclick="{! c.onActionClick }"/>                                
+                            </aura:iteration>
+                        </div>
+                    </td>
+                </aura:if>
+                </aura:iteration>                
+            </tr>
+            </aura:iteration>                        
+        </tbody>
+    </table>
+</aura:component>

@@ -1,0 +1,114 @@
+<aura:component >
+    <aura:attribute name="items" type="LIST"/>
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <c:Sortable aura:id="sortable"
+                items="{!v.items}" 
+                onEnd="{!c.onEnd}" 
+                disabled="{!v.disabled}" 
+                animation="150">
+        <div class="list">
+            <aura:iteration items="{!v.items}" var="item" indexVar="index">
+                <div data-id="{#item}">
+                    Item {#item}                    
+                </div>
+            </aura:iteration>
+        </div>
+    </c:Sortable>
+    <lightning:button label="alert" onclick="{!c.onAlert}"/>
+    <lightning:button label="add item" onclick="{!c.onAddItem}"/>
+    <lightning:button label="switch" onclick="{!c.onSwitch}"/>
+    <lightning:button label="toArray" onclick="{!c.toArray}"/>
+    <lightning:button label="doSort" onclick="{!c.doSort}"/>
+    <c:Sortable animation="150" handle=".handle">
+        <c:Accordion aura:id="accordion" activeSectionName="B">
+            <c:AccordionSection name="A" label="Accordion Title A">
+                <aura:set attribute="actions">
+                    <span class="handle">
+                        <lightning:icon iconName="utility:move" alternativeText="move" size="x-small"/>
+                    </span>                    
+                </aura:set>
+                <aura:set attribute="body">
+                    <p>This is the content area for section A.</p>
+                    <p>.</p>
+                    <p>.</p>
+                    <p>.</p>
+                    <p>The section height expands to fit your content.</p>
+                </aura:set>
+            </c:AccordionSection>
+            <c:AccordionSection name="B" label="Accordion Title B">
+                <aura:set attribute="actions">
+                    <span class="handle">
+                        <lightning:icon iconName="utility:move" alternativeText="move" size="x-small"/>
+                    </span>                    
+                </aura:set>
+                <p>This is the content area for section B.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>The section height expands to fit your content.</p>
+            </c:AccordionSection>
+            <c:AccordionSection name="C" label="Accordion Title C">
+                <aura:set attribute="actions">
+                    <span class="handle">
+                        <lightning:icon iconName="utility:move" alternativeText="move" size="x-small"/>
+                    </span>                    
+                </aura:set>
+                <p>This is the content area for section C.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>The section height expands to fit your content.</p>
+            </c:AccordionSection>
+        </c:Accordion>
+    </c:Sortable>
+    <lightning:accordion activeSectionName="B">
+        <c:Sortable>
+            <div>
+                <div>
+                    <lightning:accordionSection name="A" label="Accordion Title A">
+                        <p>This is the content area for section A.</p>
+                        <p>.</p>
+                        <p>.</p>
+                        <p>.</p>
+                        <p>The section height expands to fit your content.</p>
+                    </lightning:accordionSection>
+                </div>
+                <div>
+                    <lightning:accordionSection name="B" label="Accordion Title B">
+                        <p>This is the content area for section B.</p>
+                        <p>.</p>
+                        <p>.</p>
+                        <p>.</p>
+                        <p>The section height expands to fit your content.</p>
+                    </lightning:accordionSection>
+                </div>                
+                <div>
+                    <lightning:accordionSection name="C" label="Accordion Title C">
+                        <p>This is the content area for section C.</p>
+                        <p>.</p>
+                        <p>.</p>
+                        <p>.</p>
+                        <p>The section height expands to fit your content.</p>
+                    </lightning:accordionSection>
+                </div>                
+            </div>            
+        </c:Sortable>        
+    </lightning:accordion>
+    <table>
+        <c:Sortable animation="150">
+            <tbody>
+                <tr>
+                    <td>1.1</td>
+                    <td>1.2</td>
+                    <td>1.3</td>
+                </tr>
+                <tr>
+                    <td>2.1</td>
+                    <td>2.2</td>
+                    <td>2.3</td>
+                </tr>
+            </tbody>
+        </c:Sortable>
+    </table>
+</aura:component>

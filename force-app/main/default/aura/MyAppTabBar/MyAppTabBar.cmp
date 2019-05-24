@@ -1,0 +1,27 @@
+<aura:component >
+    <aura:attribute name="tabBar" type="Map"/>
+    <aura:attribute name="currentTab" type="String"/>
+    <aura:registerEvent name="myRouterLinkEvent" type="c:MyRouterLinkEvent"/>
+	<ul class="slds-utility-bar"
+        style="{!join('',
+               if(v.tabBar.backgroundColor, 'background: ' + v.tabBar.backgroundColor + ';', ''),
+               if(v.tabBar.position == 'top', 'top:0;', '')
+               )}">
+      <aura:iteration items="{!v.tabBar.list}" var="bar">
+      	<li class="slds-utility-bar__item">
+          <button class="{!join(' ','slds-button', 
+                         			'slds-utility-bar__action', 
+                         			if(v.currentTab == bar.pageName || v.tabBar.defaultTab == bar.pageName, 'slds-is-active', ''))}" 
+                  id="{!bar.text}"
+                  data-page="{!bar.pageName}"                  
+                  onclick="{!c.onClick}">
+            <lightning:icon iconName="{!bar.iconName}" size="medium" alternativeText=""/>
+            <span class="slds-utility-bar__text" 
+                  style="{!if(v.tabBar.color, 'color: ' + v.tabBar.color + ';', '')}">
+                {!bar.text}
+            </span>
+          </button>
+      	</li>
+      </aura:iteration>
+    </ul>
+</aura:component>

@@ -1,0 +1,5 @@
+<aura:component >
+	<aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="facet" type="Aura.Component[]"/>
+    {!v.facet}
+</aura:component>

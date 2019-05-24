@@ -1,0 +1,7 @@
+<aura:component >
+    <aura:attribute name="mycp" type="Object" />
+    <aura:attribute name="tabs" type="String[]"/>
+    <c:MenuItem cp="{!v.mycp}"/>
+    {!v.mycp}
+    {!v.tabs}
+</aura:component>

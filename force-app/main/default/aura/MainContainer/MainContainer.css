@@ -1,0 +1,24 @@
+.THIS {
+}
+
+.THIS .myfade-enter{
+    opacity: 0;
+    color: red;
+    transform: translate3d(100px, -50px, 0px) rotate(720deg) scale(2,2);
+}
+
+.THIS .myfade-enter-active{
+    display: inline-block;
+	transition: all .8s linear;
+}
+
+.THIS .myfade-leave-to{
+    opacity: 0;	
+    color: red;
+    transform: translate3d(100px, -50px, 0px) rotate(720deg) scale(2,2); 
+}
+
+.THIS .myfade-leave-active{
+    display: inline-block;
+	transition: all .8s linear;
+}

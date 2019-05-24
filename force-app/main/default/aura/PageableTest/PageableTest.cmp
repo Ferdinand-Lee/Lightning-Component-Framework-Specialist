@@ -1,0 +1,16 @@
+<aura:component extends="c.Pageable">
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <lightning:button label="addRecords" onclick="{!c.addRecords}"/>
+    <ul>
+        <aura:iteration items="{!v.pageRecords}" var="i">
+        	<li>{!i}</li>
+        </aura:iteration>
+    </ul>
+    <aura:attribute name="dispalyRecords" type="List"></aura:attribute>    
+    <c:Pagenation records="{!v.records}" pageRecords="{!v.dispalyRecords}"></c:Pagenation>
+    <ul>
+        <aura:iteration items="{!v.dispalyRecords}" var="i">
+        	<li>{!i}</li>
+        </aura:iteration>
+    </ul>
+</aura:component>

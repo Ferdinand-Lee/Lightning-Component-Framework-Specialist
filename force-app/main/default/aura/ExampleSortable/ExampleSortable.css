@@ -1,0 +1,18 @@
+.THIS {
+}
+.THIS.list{
+    cursor: move;
+    width: 100px;
+}
+.THIS .sortable-chosen {
+    background-color: white;
+}
+
+.THIS .sortable-ghost {
+    border: dotted grey 2px;
+    opacity: 0.4;
+}
+
+.THIS .handle{
+    cursor: pointer;
+}

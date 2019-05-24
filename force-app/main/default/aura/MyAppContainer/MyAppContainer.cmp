@@ -1,0 +1,24 @@
+<aura:component  extensible="true" abstract="true" extends="c:MyPageComponent">    
+    <aura:set attribute="isLoadingFixed" value="true"/>
+    
+    <aura:attribute name="view" type="Aura.Component[]"/>
+    <aura:attribute name="tabBar" type="Map"/>
+    <aura:attribute name="loginPage" type="String" default="c:MyLoginPage"/>
+    
+    <aura:attribute name="pageStack" type="List" access="private"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+	<aura:handler event="c:MyRouterLinkEvent" action="{!c.onMyRouteLink}" includeFacets="true"/>
+    <aura:handler event="c:MyGoBackEvent" action="{!c.onMyGoBack}" includeFacets="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <div style="{!join(' ',
+                if(and(not(empty(v.tabBar)), v.showTabBar), 
+                	if(v.tabBar.position == 'top', 'margin-top: ', 'margin-bottom: ') + '50px;'), 
+                	''
+                )}">
+    	{!v.view}
+    </div>
+    <aura:if isTrue="{!and(not(empty(v.tabBar)), v.showTabBar)}">
+    	<c:MyAppTabBar aura:id="myAppTabBar" tabBar="{!v.tabBar}"/>
+    </aura:if>    
+</aura:component>

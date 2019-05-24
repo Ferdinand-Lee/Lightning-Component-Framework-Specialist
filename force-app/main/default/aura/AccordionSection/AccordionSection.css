@@ -1,0 +1,15 @@
+.THIS {
+}
+.THIS .fade{
+    max-height: 100vh;
+    transition: all .3s linear;
+}
+.THIS .fade-enter {
+    opacity: 0;
+    max-height: 0px;
+}
+
+.THIS .fade-leave {
+    opacity:0;
+    max-height: 0px;
+}

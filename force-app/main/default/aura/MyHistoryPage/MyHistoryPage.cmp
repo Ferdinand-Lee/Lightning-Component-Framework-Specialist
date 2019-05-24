@@ -1,0 +1,10 @@
+<aura:component extends="c:MyPageComponent">	
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <ul>
+    	<li><c:MyRouterLink page="c:MyAboutPage" params="{title:'ABC'}">About</c:MyRouterLink></li>
+        <li><c:MyRouterLink page="c:MyLoginPage">Login</c:MyRouterLink></li>
+    </ul>       
+    <c:TestLoading></c:TestLoading>
+    <c:TestLoading></c:TestLoading>
+    <c:TestLoading></c:TestLoading>
+</aura:component>

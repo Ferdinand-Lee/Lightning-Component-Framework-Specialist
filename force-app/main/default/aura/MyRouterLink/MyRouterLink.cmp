@@ -1,0 +1,11 @@
+<aura:component >
+    <aura:attribute name="page" type="String" required="true"/>
+    <aura:attribute name="class" type="String"/>
+    <aura:attribute name="params" type="Map"/>
+   
+    <aura:registerEvent name="myRouterLinkEvent" type="c:MyRouterLinkEvent"/>
+    
+    <a class="{!v.class}" href="javascript:void(0)" onclick="{!c.onClick}">
+        {!v.body}
+    </a>
+</aura:component>

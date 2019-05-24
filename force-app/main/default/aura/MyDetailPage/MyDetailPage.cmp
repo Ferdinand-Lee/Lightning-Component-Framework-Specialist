@@ -1,0 +1,9 @@
+<aura:component extends="c:MyPageComponent">    
+    <aura:set attribute="showTabBar" value="false"/>
+    <aura:set attribute="isAuthRequired" value="true"/>
+    <aura:set attribute="roles" value="['user', 'admin']"/>
+    
+    <aura:attribute name="id" type="String"/>
+    {!v.id}
+    <button onclick="{!c.goback}">goback</button>
+</aura:component>

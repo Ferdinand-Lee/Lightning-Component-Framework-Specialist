@@ -1,0 +1,9 @@
+<aura:component extends="c:MyPageComponent">
+    <aura:attribute name="num" type="Integer" default="1"/>
+    <aura:attribute name="num2" type="Integer" default="{!v.num + 1}"/>
+	<h1>aaa</h1>
+    <h1>aaa</h1>
+    <h1>aaa</h1>
+    {!v.num2}
+    <lightning:button label="show" onclick="{!c.onshow}"/>
+</aura:component>

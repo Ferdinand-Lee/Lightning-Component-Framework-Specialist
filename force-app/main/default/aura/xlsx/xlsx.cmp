@@ -1,0 +1,10 @@
+<aura:component controller="PDFController" implements="force:appHostable">
+    <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+	<ltng:require scripts="{!join(',', 
+    							  $Resource.xlsx,
+                           		  $Resource.jsZip,
+                           		  $Resource.fileSaver)}"
+                  afterScriptsLoaded="{!c.jsLoaded}" /> 
+    <lightning:button label="export" disabled="{!not(v.isLoaded)}" onclick="{!c.export}"/>
+    <lightning:button label="export zip" disabled="{!not(v.isLoaded)}" onclick="{!c.exportZip}"/>
+</aura:component>

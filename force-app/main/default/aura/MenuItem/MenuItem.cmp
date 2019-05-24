@@ -1,0 +1,5 @@
+<aura:component >
+    <aura:attribute name="cp" type="String"/>	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:button variant="brand" label="create" onclick="{! c.handleClick }" />
+</aura:component>

@@ -1,0 +1,6 @@
+<aura:component >
+    <aura:attribute name="items" type="List"/>
+    <aura:attribute name="var" type="Object"/>
+    <aura:attribute name="body" type="Aura.ComponentDefRef[]"/>
+    <aura:iteration items="{!v.items}" var="{!v.var}" template="{!v.body}" />
+</aura:component>

@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION">
+	<aura:attribute name="size" type="Integer" default="1"></aura:attribute>
+</aura:event>

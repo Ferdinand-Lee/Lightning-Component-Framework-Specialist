@@ -1,0 +1,7 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <div style="height: calc(100vh - 236px);">
+        <lightning:container aura:id="ReactApp"
+                             src="{!$Reource.LC + '/LC/index.html'}"
+                             onerror="{!c.handleError}"/>
+    </div>
+</aura:component>

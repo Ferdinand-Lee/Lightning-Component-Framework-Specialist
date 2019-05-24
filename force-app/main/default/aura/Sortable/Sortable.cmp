@@ -1,0 +1,44 @@
+<aura:component >
+    <ltng:require scripts="{!$Resource.Sortable}" afterScriptsLoaded="{!c.afterScriptsLoaded}" />
+    
+    <aura:attribute name="items" type="List" default="[]" description="items for set order"/>
+    
+    <!-- sort config -->
+    <aura:attribute name="group" type="String"/>
+    <aura:attribute name="sort" type="Boolean" default="true" description="sorting inside list"/>
+    <aura:attribute name="delay" type="Integer" default="0" description="time in milliseconds to define when the sorting should start"/>
+    <aura:attribute name="touchStartThreshold" type="Integer" default="0" description="px, how many pixels the point should move before cancelling a delayed drag event"/>
+    <aura:attribute name="disabled" type="Boolean" default="false" description="Disables the sortable if set to true."/> 
+    <aura:attribute name="store" type="Map" description="localStorage"/>
+    <aura:attribute name="animation" type="Integer" default="0" description=" ms, animation speed moving items when sorting"/>
+    <aura:attribute name="handle" type="String" description="Drag handle selector within list items"/>
+    <aura:attribute name="filter" type="String" description="Selectors that do not lead to dragging (String or Function)"/>
+    <aura:attribute name="preventOnFilter" type="Boolean" default="true" description="Call `event.preventDefault()` when triggered `filter`"/>
+    <aura:attribute name="draggable" type="String" description="Specifies which items inside the element should be draggable"/>
+    <aura:attribute name="ghostClass" type="String" default="sortable-ghost" description="Class name for the drop placeholder"/>
+    <aura:attribute name="chosenClass" type="String" default="sortable-chosen" description="Class name for the chosen item"/>
+    <aura:attribute name="dragClass" type="String" default="sortable-drag" description="Class name for the dragging item"/>
+    <aura:attribute name="dataIdAttr" type="String" default="data-id"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="change" value="{!v.disabled}" action="{!c.onDisabledChange}"/>
+    
+    <aura:attribute name="setData" type="Aura.Action" description="Element is chosen"/>
+    <aura:attribute name="onChoose" type="Aura.Action" description="Element is chosen"/>
+    <aura:attribute name="onStart" type="Aura.Action" description="Element dragging started"/>
+    <aura:attribute name="onEnd" type="Aura.Action" description="Element dragging ended"/>
+    <aura:attribute name="onAdd" type="Aura.Action" description="Element is dropped into the list from another list"/>
+    <aura:attribute name="onUpdate" type="Aura.Action" description="Changed sorting within list"/>
+    <aura:attribute name="onSort" type="Aura.Action" description="Called by any change to the list (add / update / remove)"/>
+    <aura:attribute name="onRemove" type="Aura.Action" description="Element is removed from the list into another list"/>
+    <aura:attribute name="onFilter" type="Aura.Action" description="Attempt to drag a filtered element"/>
+    <aura:attribute name="onMove" type="Aura.Action" description="Event when you move an item in the list or between lists"/>
+    <aura:attribute name="onClone" type="Aura.Action" description="Called when creating a clone of element"/>
+    
+    <aura:method name="toArray" action="{!c.toArray}"/>
+    <aura:method name="doSort" action="{!c.doSort}">
+        <aura:attribute name="value" type="List" default="[]"/>
+    </aura:method>
+    
+    {!v.body}
+</aura:component>

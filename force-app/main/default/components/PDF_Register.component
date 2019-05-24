@@ -1,0 +1,6 @@
+<apex:component controller="PRF_RegisterController">
+    <apex:attribute name="controllerVar" type="Object" description="" assignTo="{!Controller }"/>
+    <apex:attribute name="relationShipVar" type="String" description="RelationShipName" assignTo="{!RelationShipName}"/>
+    <apex:attribute name="fieldsVar" type="String" description="" assignTo="{!fields}"/>
+    <apex:repeat value="{!init}" var="x"></apex:repeat>
+</apex:component>

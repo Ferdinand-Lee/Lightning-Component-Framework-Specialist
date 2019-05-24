@@ -1,0 +1,8 @@
+<aura:component >
+	<aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <c:C11>
+        <aura:set attribute="facet">
+            <c:Facet/>
+        </aura:set>
+    </c:C11>
+</aura:component>

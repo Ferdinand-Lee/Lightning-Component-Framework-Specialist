@@ -1,0 +1,16 @@
+<apex:page id="thePage" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" standardController="Account">
+<html>
+    <head>
+        <title>Demo</title>
+        <meta name="renderer" content="webkit" />
+        <meta http-equiv="X-Powered-By" content="Salesforce.com ApexPages" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    </head>
+    <body>
+ 
+        <c:UploadMedia parentId="{!Account.Id}" DragDropHeight="100px" />
+ 
+    </body>
+    </html>
+</apex:page>

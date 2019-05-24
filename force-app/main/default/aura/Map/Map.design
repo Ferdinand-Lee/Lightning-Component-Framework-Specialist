@@ -1,0 +1,4 @@
+<design:component >
+    <design:attribute name="width" default="100%" label="width"/>
+    <design:attribute name="height" default="200px" label="height"/>
+</design:component>

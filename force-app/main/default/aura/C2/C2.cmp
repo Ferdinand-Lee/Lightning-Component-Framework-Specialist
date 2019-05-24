@@ -1,0 +1,8 @@
+<aura:component >
+    <aura:attribute name="user" type="Object"/>
+	<aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <span class="parent-color">C2:{!v.user.name}</span>
+    <lightning:input value="{!v.user.name}"/>
+    <lightning:button label="refresh" onclick="{!c.onRefresh}"/>
+    <lightning:button label="change name" onclick="{!c.changeName}"/>
+</aura:component>

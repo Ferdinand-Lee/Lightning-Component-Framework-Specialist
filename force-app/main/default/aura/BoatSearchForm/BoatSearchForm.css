@@ -1,0 +1,8 @@
+.THIS {
+}
+.THIS .type{
+    margin-right:10px;
+}
+.THIS .type > label{
+	display: none!important;
+}

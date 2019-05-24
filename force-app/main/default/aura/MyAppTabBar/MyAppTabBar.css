@@ -1,0 +1,14 @@
+.THIS {
+    height: 50px !important;
+    display: flex !important;
+    justify-content: space-around !important;
+}
+.THIS li{
+    flex:1 !important;
+}
+.THIS button{
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

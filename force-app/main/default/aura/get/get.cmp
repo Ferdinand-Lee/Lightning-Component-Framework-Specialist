@@ -1,0 +1,8 @@
+<aura:component >
+    <aura:attribute type="Object" name="object" default="{}"/>
+    <aura:attribute type="String" name="path" default=""/>
+    <aura:attribute type="String" name="defaultValue" default=""/>
+    <aura:attribute type="String" name="value" default="" access="private"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+	{!v.value}
+</aura:component>

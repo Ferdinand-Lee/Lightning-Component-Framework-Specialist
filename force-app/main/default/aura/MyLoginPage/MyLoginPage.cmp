@@ -1,0 +1,68 @@
+<aura:component extensible="true" extends="c:MyPageComponent">
+    <aura:set attribute="showTabBar" value="false"/>
+    
+    <aura:attribute name="successPage" type="String"/>
+    <aura:attribute name="successParams" type="Map"/>
+
+    <aura:attribute name="username" type="String"/>
+    <aura:attribute name="password" type="String"/>
+    <aura:attribute name="emailaddress" type="String"/>
+    <aura:attribute name="isRegister" type="Boolean" default="false"/>
+    
+    <div class="login-page">
+      <div class="form">
+        <aura:if isTrue="{!v.isRegister}">
+          <div class="register-form">
+            <lightning:input type="text" 
+                             aura:id="registerInput"
+                             variant="label-hidden" 
+                             value="{!v.username}" 
+                             label="Username" 
+                             placeholder="Username"
+                             required="true"
+                             messageWhenValueMissing="Username is required"/>
+            <lightning:input type="password" 
+                             aura:id="registerInput"
+                             variant="label-hidden" 
+                             value="{!v.password}" 
+                             label="Password" 
+                             placeholder="Password"
+                             required="true"
+                             messageWhenValueMissing="Password is required"/>
+            <lightning:input type="email" 
+                             variant="label-hidden" 
+                             aura:id="registerInput"
+                             value="{!v.emailaddress}" 
+                             label="Email address" 
+                             placeholder="Email address"
+                             required="true"
+                             messageWhenValueMissing="Email address is required"/>
+            <lightning:button label="Register" onclick="{!c.onRegister}"/>
+            <p class="message">Already registered? <a href="javascript:void(0)" onclick="{!c.toggleRegister}">Sign In</a></p>
+          </div>
+          <aura:set attribute="else">
+          	<div class="login-form">
+              <lightning:input type="text"
+                               aura:id="loginInput"
+                               variant="label-hidden" 
+                               value="{!v.username}" 
+                               label="Username" 
+                               placeholder="Username"
+                               required="true"
+                               messageWhenValueMissing="Username is required"/>
+              <lightning:input type="password" 
+                               aura:id="loginInput"
+                               variant="label-hidden" 
+                               value="{!v.password}" 
+                               label="Password" 
+                               placeholder="Password"
+                               required="true"
+                               messageWhenValueMissing="Password is required"/>
+              <lightning:button label="Login" onclick="{!c.onLogin}"/>
+              <p class="message">Not registered? <a href="javascript:void(0)" onclick="{!c.toggleRegister}">Create an account</a></p>
+            </div>
+          </aura:set>
+        </aura:if>                
+      </div>
+    </div>
+</aura:component>

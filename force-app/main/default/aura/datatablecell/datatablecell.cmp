@@ -1,0 +1,12 @@
+<aura:component >
+    <aura:attribute name="row" type="Object"/>
+    <aura:attribute name="column" type="Object"/>
+    <aura:attribute name="value" type="Object"/>
+    <aura:attribute name="style" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <td role="gridcell" style="{!v.style}">
+        <div class="slds-truncate">
+            {!v.value}
+        </div>
+    </td>
+</aura:component>

@@ -1,0 +1,26 @@
+<aura:component >
+    <aura:attribute name="list1" type="List" default="[1,2,3,4]"/>
+    <aura:attribute name="list2" type="List" default="['A','B','C','D']"/>
+    <div class="slds-grid">
+        <c:Sortable items="{!v.list1}" animation="150" group="grouping">
+            <div class="slds-col list">
+                <aura:iteration items="{!v.list1}" var="item" indexVar="index">
+                    <div data-id="{#item}">
+                        Item {#item}                    
+                    </div>
+                </aura:iteration>
+            </div>
+        </c:Sortable>
+        <c:Sortable items="{!v.list2}" animation="150" group="grouping">
+            <div class="slds-col list">
+                <aura:iteration items="{!v.list2}" var="item" indexVar="index">
+                    <div data-id="{#item}">
+                        Item {#item}                    
+                    </div>
+                </aura:iteration>
+            </div>
+        </c:Sortable>
+    </div>
+    <lightning:button label="alert list1" value="list1" onclick="{!c.onAlert}"/>
+    <lightning:button label="alert list2" value="list2" onclick="{!c.onAlert}"/>
+</aura:component>

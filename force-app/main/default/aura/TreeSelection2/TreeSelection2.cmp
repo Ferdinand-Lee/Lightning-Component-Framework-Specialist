@@ -1,0 +1,33 @@
+<aura:component >
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="value" type="Object"/>
+    <aura:attribute name="keyField" type="String" required="true"/>
+    <aura:attribute name="items" type="Object"/>
+    <aura:attribute name="selectedItems" type="List" default="[]"/>
+    <aura:attribute name="level" type="Integer" default="1"/>
+    <aura:attribute name="model" type="String" default="single"/>
+    <aura:attribute name="limit" type="Integer" default="9999999"/>
+
+	<aura:attribute name="allowSelectAll" type="Boolean" default="false"/>    
+    <aura:method name="getSelectedItems"></aura:method>
+    <aura:method name="selectAll">
+        <aura:attribute name="checked" type="Boolean"/>
+    </aura:method>    
+    <aura:registerEvent name="onTreeSelection" type="c:TreeSelectionEvent"/>
+   
+    <ul	class="{!if(v.level == 1, 'slds-tree', '')}" role="{!if(v.level == 1, 'tree', 'group')}">        
+    	<aura:iteration items="{!v.items}" var="item">
+            <c:TreeSelection2Item aura:id="selectionItem"
+                             name="{#v.name}" 
+                             value="{!v.value}"
+                             keyField="{#v.keyField}"
+                             item="{!item}" 
+                             selectedItems="{!v.selectedItems}"
+                             level="{#v.level + 1}" 
+                             model="{#v.model}"
+                             limit="{#v.limit}"
+                             allowSelectAll="{#v.allowSelectAll}"
+                             onTreeSelection="{!c.onTreeSelection}"/>
+        </aura:iteration>
+    </ul>
+</aura:component>

@@ -1,0 +1,2 @@
+<apex:page StandardController="Book__c" action="{!URLFOR($Action.Book__c.Share,Book__c.Id)}">
+</apex:page>

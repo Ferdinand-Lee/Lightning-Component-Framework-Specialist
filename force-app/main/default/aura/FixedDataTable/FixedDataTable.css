@@ -1,0 +1,72 @@
+.THIS .scrollDiv {
+    width: 100%;
+    height: 300px;
+    overflow: scroll;
+    position: relative;
+}
+
+.THIS .scrollTable thead th {
+    position: sticky;
+    top: 0;
+    background: #EFF6FF;
+    z-index: 91;
+    text-align: center;
+    height: 46px;
+}
+
+.THIS .scrollTable thead th:first-child {
+    width: 200px;
+    left: 0;
+    z-index: 92;
+    padding: 0px;
+}
+
+.THIS .scrollTable thead th:last-child {
+    width: 200px;
+    right: 0px;
+    z-index: 92;
+    padding: 0px;
+}
+
+.THIS .scrollTable tbody th{
+    position: sticky;
+    background: #EFF6FF;
+    z-index: 90;
+    height: 45px;
+}
+
+.THIS .scrollTable tbody th:first-child {
+    width: 200px;
+    left: 0;
+    z-index: 90;
+    padding: 0px;
+}
+
+.THIS .scrollTable tbody th:last-child {
+    width: 200px;
+    right: 0px;
+    z-index: 90;
+    padding: 0px;
+}
+/*
+.THIS .scrollTable tbody th{
+    position: sticky;
+    background: #EFF6FF;
+    z-index: 90;
+    height: 45px;
+}
+
+.THIS .scrollTable tbody td{
+    text-align: center;
+    height: 41px;
+}
+
+.THIS .scrollTable tbody th:first-child{
+    width: 34px;
+    left: 0;
+}
+
+.THIS .scrollTable tbody th:first-child(2) {
+    width: 34px;
+    left: 0;
+}*/

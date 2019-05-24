@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute name="user" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler name="change" value="{!v.user}" action="{!c.onUserChange}"/>
+    P:{!v.user.name} 
+    <lightning:input value="{!v.user.name}"/>
+    <lightning:button label="refresh" onclick="{!c.onRefresh}"/><br/>
+    <c:C2 user="{!v.user}"></c:C2>
+    <c:C1></c:C1>
+</aura:component>

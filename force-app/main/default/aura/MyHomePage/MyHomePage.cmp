@@ -1,0 +1,42 @@
+<aura:component extends="c:MyPageComponent">
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>   
+    <aura:attribute name="users" type="List" default="[{id:1, address: {city: 'sh'}}, 
+                                                       {id:2, address: {city: 'bj'}, fruit:['apple']}]"/>
+	
+    <aura:attribute name="sexOptions" type="List" default="[{'label': '男', 'value': 'male'},
+                                                          	{'label': '女', 'value': 'female'} ]"/>
+    
+    <aura:attribute name="fruitOptions" type="List" default="[{'label': '香蕉', 'value': 'banana'},
+                                                          	  {'label': '苹果', 'value': 'apple'} ]"/>
+    <h1 style="text-align:center">Home</h1>
+    Counter: {!v.state.counter}<br/>
+    QueryParams-id: {!v.state.queryParams.id}<br/>
+    {!storage.name}
+    <aura:iteration items="{!v.users}" var="user" indexVar="index">
+    	<c:put object="{!user}" path="id">
+            <lightning:input label="Id" readonly="true"/>
+        </c:put>
+		<c:put object="{!user}" path="sex">
+            <lightning:radioGroup label="Radio Button Group"
+                                  name="{!add('sex-',index)}"
+                                  options="{!v.sexOptions}"
+                                  type="radio"/>
+        </c:put>
+        <c:put object="{!user}" path="fruit">
+            <lightning:checkboxGroup label="Fruit"
+                                     name="{!add('fruit-',index)}"
+                                     options="{!v.fruitOptions}"/>
+        </c:put>
+        <c:put object="{!user}" path="address.city">
+            <lightning:select label="City">
+                <option value="bj">北京</option>
+                <option value="sh">上海</option>                
+                <option value="gz">广州</option>
+            </lightning:select>            
+        </c:put>
+        
+    </aura:iteration>    
+    <lightning:button label="AddUser" onclick="{!c.onAddUser}"/>
+    <lightning:button label="Alert" onclick="{!c.onClick}"/>
+
+</aura:component>

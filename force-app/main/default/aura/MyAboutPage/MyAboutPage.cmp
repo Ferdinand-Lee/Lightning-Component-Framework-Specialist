@@ -1,0 +1,19 @@
+<aura:component extends="c:MyPageComponent">   
+    <aura:attribute name="title" type="String"/>
+	<h1 style="text-align:center">About</h1>
+    <h1 style="text-align:center">{!v.title}</h1>
+    Counter: {!v.state.counter}
+    <button onclick="{!c.add}">Add</button>
+    <button onclick="{!c.minus}">Minus</button>
+    <ul>
+    	<aura:iteration items="{!v.state.user.roles}" var="role">
+        	<li>{!role}</li>
+        </aura:iteration>
+    </ul>
+    <br/><br/>
+    <lightning:button label="Add User Role" onclick="{!c.toggleRole}" name="user" value="add"/>
+    <lightning:button label="Add Admin Role" onclick="{!c.toggleRole}" name="admin" value="add"/>
+    <br/><br/>
+    <lightning:button label="Remove User Role" onclick="{!c.toggleRole}" name="user" value="delete"/>
+    <lightning:button label="Remove Admin Role" onclick="{!c.toggleRole}" name="admin" value="delete"/>
+</aura:component>

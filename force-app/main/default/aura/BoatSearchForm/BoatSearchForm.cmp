@@ -1,0 +1,22 @@
+<aura:component controller="BoatSearchForm">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />    
+    <aura:registerEvent name="formsubmit" type="c:FormSubmit"/>
+    <aura:attribute name="selectedTypes" type="Array" default="[]"/>
+    
+    <aura:attribute name="showCreate" type="Boolean"/>
+    <aura:attribute name="types" type="BoatType__c[]"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:layout horizontalAlign="center">
+   		<lightning:select variant="label-hidden" label="Boat Type" name="typeSelect" aura:id="typeSelect" class="type" value="">
+            <option value="">All Types</option>
+            <aura:iteration items="{!v.types}" var="item">
+                <option value="{#item.Id}">{#item.Name}</option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:button variant="brand" label="Search" title="Search" onclick="{!c.onFormSubmit}"/>
+        <aura:if isTrue="{!v.showCreate}">
+            <lightning:button label="New" title="New" onclick="{!c.createRecord}"/>
+        </aura:if>
+        <lightning:button variant="brand" label="Open" title="Open" onclick="{!c.onOpen}"/>
+    </lightning:layout>	
+</aura:component>

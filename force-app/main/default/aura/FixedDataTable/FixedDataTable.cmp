@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <div style="background-color: #F8F8F8;">
+        <div class="slds-modal__content slds-p-around_medium">
+            <div class="scrollDiv">
+                <table class="scrollTable slds-table slds-table_bordered" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Stage</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Stage</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Stage</th>
+                            <th>Amount</th>
+                            <th>Close Date</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{acc.Name}</th>
+                            <td>{acc.Type}</td>
+                            <td>{acc.StageName}</td>
+                            <td>{acc.Amount}</td>
+                            <td>{acc.Type}</td>
+                            <td>{acc.StageName}</td>
+                            <td>{acc.Amount}</td>
+                            <td>{acc.Type}</td>
+                            <td>{acc.StageName}</td>
+                            <td>{acc.Amount}</td>
+                            <th>{acc.CloseDate}</th>
+                        </tr> 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</aura:component>

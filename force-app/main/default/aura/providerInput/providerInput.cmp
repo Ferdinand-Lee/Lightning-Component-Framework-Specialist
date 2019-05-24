@@ -1,0 +1,8 @@
+<aura:component >
+	<aura:attribute name="object" type="Map"/>
+    <aura:attribute name="path" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/> 
+    <aura:attribute name="value" type="object"/>
+    <lightning:input aura:id="myinput" value="{!v.value}"/>
+    <lightning:button label="set" onclick="{!c.setvalue}"/>
+</aura:component>

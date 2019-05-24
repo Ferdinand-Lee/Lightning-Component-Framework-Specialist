@@ -1,0 +1,59 @@
+<aura:component >
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="value" type="Object"/>
+    <aura:attribute name="keyField" type="String" required="true"/>
+    <aura:attribute name="item" type="Object"/>
+    <aura:attribute name="selectedItems" type="List" default="[]"/>
+    <aura:attribute name="level" type="Integer" default="1"/>
+    <aura:attribute name="model" type="String" default="single"/>
+    <aura:attribute name="limit" type="Integer" default="9999999"/>
+    
+    <aura:attribute name="allowSelectAll" type="Boolean" default="false"/>
+    
+    <aura:attribute name="expanded" type="Boolean" default="false"/>
+    <aura:attribute name="checked" type="Boolean" default="false"/>
+
+    <aura:method name="select">
+        <aura:attribute name="checked" type="Boolean"/>
+    </aura:method>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    
+    <aura:registerEvent name="onTreeSelection" type="c:TreeSelectionEvent"/>
+	<li role="treeitem" aria-level="{!v.level}" aria-expanded="{!v.expanded}">
+        <div class="slds-tree__item">
+            <aura:if isTrue="{!not(empty(v.item.items))}">
+            	<lightning:buttonIcon iconName="utility:right" 
+                                  variant="bare"
+                                  alternativeText="View More" 
+                                  value="{!v.item}" 
+                                  onclick="{!c.toggleExpend}"/>
+            </aura:if>            
+            <span class="slds-size_1-of-1" style="display:flex">
+                <aura:if isTrue="{!or(empty(v.item.items), and(v.allowSelectAll, notequals(v.model, 'single')))}">
+                    <lightning:input type="{!if(equals(v.model,'single'), 'radio', 'checkbox')}"                                                  
+                                     name="{!concat(v.name, '-tree-selection')}"
+                                     title="{!v.item.label}"
+                                     checked="{!v.checked}"
+                                     value="{!v.item}"
+                                     disabled="{!and(not(v.checked), greaterthanorequal(v.selectedItems.length, v.limit))}"
+                                     class="slds-tree__item-label slds-truncate"
+                                     onchange="{!c.toggleSelect}"/>	
+                </aura:if>
+                <span class="slds-tree__item-label slds-truncate" title="{!v.item.label}">{!v.item.label}</span>
+            </span>
+        </div>                
+        <aura:if isTrue="{!not(empty(v.item.items))}">
+            <c:TreeSelection2 aura:id="treeSelect"
+                             name="{#v.name}" 
+                             value="{!v.value}"
+                             keyField="{#v.keyField}"
+                             items="{!v.item.items}" 
+                             selectedItems="{!v.selectedItems}"
+                             level="{#v.level + 1}" 
+                             model="{#v.model}" 
+                             limit="{#v.limit}"
+                             allowSelectAll="{#v.allowSelectAll}"
+                             onTreeSelection="{!c.onTreeSelection}"/>
+        </aura:if>
+    </li>
+</aura:component>

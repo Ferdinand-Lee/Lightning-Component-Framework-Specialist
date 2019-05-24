@@ -1,0 +1,22 @@
+<aura:component extensible="true" abstract="true" implements="lightning:isUrlAddressable">
+    <aura:attribute name="state" type="Map" default="{}"/>
+    <aura:attribute name="isAuthRequired" type="Boolean" default="false"/>
+    <aura:attribute name="roles" type="List" default="[]"/>
+    <aura:attribute name="showTabBar" type="Boolean" default="true"/>
+    <aura:attribute name="isLoadingFixed" type="Boolean" default="false"/>
+    <aura:attribute name="errorPage" type="String" default="c:MyErrorPage"/>
+    
+    <aura:registerEvent name="myRouterLinkEvent" type="c:MyRouterLinkEvent"/>
+    <aura:registerEvent name="myGoBackEvent" type="c:MyGoBackEvent"/>
+    <div style="position: relative;">
+        {!v.body}
+        <aura:if isTrue="{!v.isLoadingFixed}">
+            <lightning:spinner aura:id="spinner" variant="brand" class="slds-spinner_container slds-is-fixed slds-hide"/>
+            <div aura:id="backdrop" class="slds-backdrop slds-is-fixed"></div>
+            <aura:set attribute="else">
+            	<lightning:spinner aura:id="spinner" variant="brand" class="slds-spinner_container slds-hide"/>
+            	<div aura:id="backdrop" class="slds-backdrop slds-is-absolute"></div>
+            </aura:set>
+        </aura:if>
+    </div>    
+</aura:component>

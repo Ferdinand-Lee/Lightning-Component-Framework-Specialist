@@ -1,0 +1,13 @@
+({
+    init: function(component, event, helper){
+        var showFullDetails = $A.get("e.force:navigateToSObject") != null;
+        component.set('v.showFullDetails', showFullDetails);
+    },
+	onFullDetails : function(component, event, helper) {
+        var navEvt = $A.get("e.force:navigateToSObject");        
+        navEvt.setParams({
+        	"recordId": component.get('v.boat.Id')
+        });
+        navEvt.fire();
+    }        
+})

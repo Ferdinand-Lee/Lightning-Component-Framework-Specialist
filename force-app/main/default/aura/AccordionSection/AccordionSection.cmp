@@ -1,0 +1,28 @@
+<aura:component >
+    <aura:attribute name="isOpen" type="Boolean" default="false"/>
+    <aura:attribute name="name" type="String" required="true"/>
+    <aura:attribute name="label" type="String" required="true"/>
+    <aura:attribute name="actions" type="Aura.Component[]" />
+    
+    <aura:attribute name="onOpen" type="Aura.Action"/>
+    
+    <aura:method name="setOpen">
+        <aura:attribute name="isOpen" type="Boolean"/>        
+    </aura:method>
+    
+	<section class="{!if(v.isOpen, 'slds-accordion__section slds-is-open', 'slds-accordion__section')}">
+      <div class="slds-accordion__summary">
+        <h3 class="slds-text-heading_small slds-accordion__summary-heading">
+            <lightning:button iconName="{!if(v.isOpen, 'utility:down', 'utility:right')}" 
+                              label="{!v.label}" 
+                              variant="bare" 
+                              name="{!v.name}"
+                              onclick="{!v.onOpen}"/>
+        </h3>
+		{!v.actions}
+      </div>
+      <div aura:id="content" class="slds-accordion__content" ontransitionend="{!c.ontransitionend}">
+      	{!v.body}  
+      </div>
+    </section>
+</aura:component>
